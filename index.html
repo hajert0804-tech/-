@@ -19,29 +19,32 @@
 
     .card {
       background: rgba(0,0,0,0.3);
-      padding: 40px;
+      padding: 60px;
       border-radius: 20px;
-      max-width: 600px;
+      max-width: 700px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.4);
       z-index: 1;
       position: relative;
     }
 
     .msg {
-      font-size: 24px;
+      font-size: 48px; /* كبرنا الخط أكتر */
       line-height: 1.7;
       white-space: pre-wrap;
       font-weight: bold;
       color: #fff;
-      text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+      text-shadow: 2px 2px 12px rgba(0,0,0,0.6);
     }
 
-    /* القلوب المتساقطة */
+    /* القلوب المتساقطة بحواف مضيئة */
     .heart {
       position: fixed;
       top: -50px;
-      font-size: 20px;
-      color: #ff5fa2;
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: #ff5fa2;
+      box-shadow: 0 0 15px #ff5fa2, 0 0 30px #ff5fa2, 0 0 45px #ff5fa2;
       animation: fall linear infinite;
       pointer-events: none;
     }
@@ -121,22 +124,21 @@
       return arr[Math.floor(Math.random() * arr.length)];
     }
 
-    // عرض الرسالة عند فتح الصفحة
     document.getElementById("message").textContent = pickRandom(messages);
 
-    // إنشاء القلوب المتساقطة
     function createHeart() {
       const heart = document.createElement('div');
       heart.className = 'heart';
-      heart.textContent = '❤️';
       heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.fontSize = (15 + Math.random() * 20) + 'px';
+      const size = 20 + Math.random() * 30;
+      heart.style.width = size + 'px';
+      heart.style.height = size + 'px';
       heart.style.animationDuration = (4 + Math.random() * 3) + 's';
       document.body.appendChild(heart);
       setTimeout(() => heart.remove(), 7000);
     }
 
-    setInterval(createHeart, 300); // قلب جديد كل 0.3 ثانية
+    setInterval(createHeart, 300);
   </script>
 </body>
 </html>
