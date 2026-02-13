@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>🤍🥹متزعلش ي صغنن و تذكر إن</title>
+  <title>🤍🥺متزعلش ي صغنن وافتكر إن</title>
   <style>
     body {
       font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial;
@@ -28,7 +28,7 @@
     }
 
     .msg {
-      font-size: 48px; /* كبرنا الخط أكتر */
+      font-size: 28px;
       line-height: 1.7;
       white-space: pre-wrap;
       font-weight: bold;
@@ -36,17 +36,37 @@
       text-shadow: 2px 2px 12px rgba(0,0,0,0.6);
     }
 
-    /* القلوب المتساقطة بحواف مضيئة */
+    /* قلب CSS حقيقي */
     .heart {
       position: fixed;
-      top: -50px;
       width: 25px;
       height: 25px;
-      border-radius: 50%;
       background: #ff5fa2;
-      box-shadow: 0 0 15px #ff5fa2, 0 0 30px #ff5fa2, 0 0 45px #ff5fa2;
+      transform: rotate(-45deg);
+      top: -50px;
       animation: fall linear infinite;
       pointer-events: none;
+      box-shadow: 0 0 10px #ff5fa2, 0 0 20px #ff5fa2, 0 0 30px #ff5fa2;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: #ff5fa2;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -12.5px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 12.5px;
+      top: 0;
     }
 
     @keyframes fall {
