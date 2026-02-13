@@ -13,6 +13,8 @@ body {
   background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4);
   position: relative;
 }
+
+/* القلوب CSS */
 .heart {
   position: fixed;
   width: 20px;
@@ -45,6 +47,8 @@ body {
   0%, 100% { transform: rotate(-45deg) scale(1); }
   50% { transform: rotate(-45deg) scale(1.3); }
 }
+
+/* النص الطاير في نص الشاشة */
 .msg {
   position: absolute;
   font-size: 26px;
@@ -53,12 +57,16 @@ body {
   text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
   white-space: nowrap;
   pointer-events: none;
-  animation: float 6s ease-in-out infinite alternate;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: float 4s ease-in-out infinite alternate;
 }
+
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-30px); }
-  100% { transform: translateY(0px); }
+  0% { transform: translate(-50%, -50%) translateY(0px); }
+  50% { transform: translate(-50%, -50%) translateY(-20px); }
+  100% { transform: translate(-50%, -50%) translateY(0px); }
 }
 </style>
 </head>
@@ -120,17 +128,13 @@ const messages = [
       "قلبي ملكك، وأنا هنا ليك." ,    
 ];
 
-function pickRandom(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
-}
-
+// عرض رسالة واحدة عند فتح الصفحة
 function showMessage() {
   const msgDiv = document.getElementById("message");
-  msgDiv.textContent = pickRandom(messages);
-  msgDiv.style.left = Math.random() * 80 + "vw";
-  msgDiv.style.top = Math.random() * 80 + "vh";
+  msgDiv.textContent = messages[Math.floor(Math.random() * messages.length)];
 }
 
+// إنشاء قلب CSS
 function createHeart() {
   const heart = document.createElement('div');
   heart.className = 'heart';
@@ -148,8 +152,11 @@ function createHeart() {
   setTimeout(()=>heart.remove(),7000);
 }
 
+// تكرار إنشاء القلوب باستمرار
 setInterval(createHeart, 300);
-showMessage(); // عرض رسالة واحدة عند فتح الصفحة
+
+// عرض الرسالة عند تحميل الصفحة
+showMessage();
 </script>
 </body>
 </html>
