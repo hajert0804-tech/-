@@ -6,7 +6,7 @@
 <title>رسائل حب رومانسية طايرة</title>
 <style>
 body {
-  font-family: "Amiri", "Noto Naskh Arabic", "Traditional Arabic", "Arial", serif; /* خط النسخ */
+  font-family: "Amiri", "Noto Naskh Arabic", "Traditional Arabic", "Arial", serif;
   margin: 0;
   height: 100vh;
   overflow: hidden;
@@ -74,7 +74,7 @@ body {
 
 <script>
 const messages = [
-  "مهما حصل، أنا جمبك دايمًا🥹❤️." ,  
+"مهما حصل، أنا جمبك دايمًا🥹❤️." ,  
       "خد نفس عميق، وأنا هنا معاك❤️‍🩹." ,  
       "كل حاجة هتعدي، وأنا هفضل جنبك🥺💋." ,    
       "لو التعب مالي قلبك، سيب ليك مساحة أحبك فيها🌍🥺." ,    
@@ -126,44 +126,12 @@ const messages = [
       "قلبي ملكك، وأنا هنا ليك." ,    
 ];
 
-// اختيار رسالة عشوائية
 function pickRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
-}
-
-// إنشاء النص الطاير
-function createFloatingMessage() {
-  const msg = document.createElement('div');
-  msg.className = 'msg';
-  msg.textContent = pickRandom(messages);
-  msg.style.left = Math.random() * 80 + 'vw'; // موقع أفقي عشوائي
-  msg.style.top = Math.random() * 80 + 'vh'; // موقع رأسي عشوائي
-  msg.style.animationDuration = (5 + Math.random()*5) + 's'; // سرعة مختلفة
-  document.body.appendChild(msg);
-  setTimeout(() => msg.remove(), 10000); // تختفي بعد 10 ثواني
 }
 
 // إنشاء قلب CSS
 function createHeart() {
   const heart = document.createElement('div');
   heart.className = 'heart';
-  const size = 20 + Math.random()*30;
-  heart.style.width = size + 'px';
-  heart.style.height = size + 'px';
-  const colors = ['#ff5fa2','#ff1e56','#ffb6c1','#fff0f5'];
-  const color = colors[Math.floor(Math.random()*colors.length)];
-  heart.style.background = color;
-  heart.style.boxShadow = `0 0 10px ${color},0 0 20px ${color},0 0 30px ${color}`;
-  heart.style.left = Math.random() * 100 + 'vw';
-  heart.style.animationDuration = (4 + Math.random()*3) + 's';
-  if(Math.random()<0.5){heart.style.animation=`fall linear ${(4 + Math.random()*3)}s, pulse 1s infinite`;}
-  document.body.appendChild(heart);
-  setTimeout(()=>heart.remove(),7000);
-}
-
-// تكرار إنشاء القلوب والنصوص
-setInterval(createHeart, 300);
-setInterval(createFloatingMessage, 700);
-</script>
-</body>
-</html>
+  const size = 20 + Math
