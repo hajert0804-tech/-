@@ -6,15 +6,13 @@
 <title>رسائل حب رومانسية</title>
 <style>
 body {
-  font-family: "Amiri", "Noto Naskh Arabic", "Traditional Arabic", "Arial", serif; /* خط النسخ */
+  font-family: "Amiri", "Noto Naskh Arabic", "Traditional Arabic", "Arial", serif;
   margin: 0;
   height: 100vh;
   overflow: hidden;
   background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4);
   position: relative;
 }
-
-/* القلوب CSS */
 .heart {
   position: fixed;
   width: 20px;
@@ -27,7 +25,6 @@ body {
   border-radius: 50% 50% 0 0;
   box-shadow: 0 0 10px #ff5fa2, 0 0 20px #ff5fa2, 0 0 30px #ff5fa2;
 }
-
 .heart::before,
 .heart::after {
   content: "";
@@ -37,7 +34,6 @@ body {
   background: inherit;
   border-radius: 50%;
 }
-
 .heart::before { top: -50%; left: 0; }
 .heart::after { left: 50%; top: 0; }
 
@@ -45,13 +41,10 @@ body {
   0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
   100% { transform: translateY(110vh) rotate(360deg) scale(1); opacity: 0; }
 }
-
 @keyframes pulse {
   0%, 100% { transform: rotate(-45deg) scale(1); }
   50% { transform: rotate(-45deg) scale(1.3); }
 }
-
-/* النص الطاير */
 .msg {
   position: absolute;
   font-size: 26px;
@@ -62,7 +55,6 @@ body {
   pointer-events: none;
   animation: float 6s ease-in-out infinite alternate;
 }
-
 @keyframes float {
   0% { transform: translateY(0px); }
   50% { transform: translateY(-30px); }
@@ -71,6 +63,8 @@ body {
 </style>
 </head>
 <body>
+
+<div id="message" class="msg"></div>
 
 <script>
 const messages = [
@@ -127,15 +121,16 @@ const messages = [
 ];
 
 function pickRandom(arr) {
-      return arr[Math.floor(Math.random() * arr.length)];
-    }
-
-    // عرض الرسالة عند فتح الصفحة
-    document.getElementById("message").textContent = pickRandom(messages);
-);
+  return arr[Math.floor(Math.random() * arr.length)];
 }
 
-// إنشاء قلب CSS
+function showMessage() {
+  const msgDiv = document.getElementById("message");
+  msgDiv.textContent = pickRandom(messages);
+  msgDiv.style.left = Math.random() * 80 + "vw";
+  msgDiv.style.top = Math.random() * 80 + "vh";
+}
+
 function createHeart() {
   const heart = document.createElement('div');
   heart.className = 'heart';
@@ -153,11 +148,8 @@ function createHeart() {
   setTimeout(()=>heart.remove(),7000);
 }
 
-// تكرار إنشاء القلوب باستمرار
 setInterval(createHeart, 300);
-
-// عرض رسالة واحدة عند تحميل الصفحة
-showMessage();
+showMessage(); // عرض رسالة واحدة عند فتح الصفحة
 </script>
 </body>
 </html>
