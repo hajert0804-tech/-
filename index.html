@@ -3,41 +3,18 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>رسالة حب رومانسية</title>
+<title>رسائل حب رومانسية طايرة</title>
 <style>
 body {
   font-family: "Amiri", "Noto Naskh Arabic", "Traditional Arabic", "Arial", serif; /* خط النسخ */
   margin: 0;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4);
   overflow: hidden;
-  text-align: center;
-}
-
-.card {
-  background: rgba(0,0,0,0.3);
-  padding: 40px;
-  border-radius: 20px;
-  max-width: 700px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-  z-index: 1;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4);
   position: relative;
 }
 
-.msg {
-  font-family: "Amiri", "Noto Naskh Arabic", "Traditional Arabic", "Arial", serif; /* خط النسخ */
-  font-size: 40px;
-  line-height: 1.7;
-  white-space: pre-wrap;
-  font-weight: bold;
-  color: #fff;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-}
-
-/* القلوب */
+/* القلوب CSS */
 .heart {
   position: fixed;
   width: 20px;
@@ -55,21 +32,14 @@ body {
 .heart::after {
   content: "";
   position: absolute;
-  width: 20px;
-  height: 20px;
-  background: red;
+  width: 100%;
+  height: 100%;
+  background: inherit;
   border-radius: 50%;
 }
 
-.heart::before {
-  top: -50%;
-  left: 0;
-}
-
-.heart::after {
-  left: 50%;
-  top: 0;
-}
+.heart::before { top: -50%; left: 0; }
+.heart::after { left: 50%; top: 0; }
 
 @keyframes fall {
   0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
@@ -80,12 +50,27 @@ body {
   0%, 100% { transform: rotate(-45deg) scale(1); }
   50% { transform: rotate(-45deg) scale(1.3); }
 }
+
+/* النص الطاير */
+.msg {
+  position: absolute;
+  font-size: 26px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+  white-space: nowrap;
+  pointer-events: none;
+  animation: float 6s ease-in-out infinite alternate;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-30px); }
+  100% { transform: translateY(0px); }
+}
 </style>
 </head>
 <body>
-<div class="card">
-  <div id="message" class="msg"></div>
-</div>
 
 <script>
 const messages = [
@@ -141,44 +126,44 @@ const messages = [
       "قلبي ملكك، وأنا هنا ليك." ,    
 ];
 
+// اختيار رسالة عشوائية
 function pickRandom(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
 }
 
-document.getElementById("message").textContent = pickRandom(messages);
+// إنشاء النص الطاير
+function createFloatingMessage() {
+  const msg = document.createElement('div');
+  msg.className = 'msg';
+  msg.textContent = pickRandom(messages);
+  msg.style.left = Math.random() * 80 + 'vw'; // موقع أفقي عشوائي
+  msg.style.top = Math.random() * 80 + 'vh'; // موقع رأسي عشوائي
+  msg.style.animationDuration = (5 + Math.random()*5) + 's'; // سرعة مختلفة
+  document.body.appendChild(msg);
+  setTimeout(() => msg.remove(), 10000); // تختفي بعد 10 ثواني
+}
 
+// إنشاء قلب CSS
 function createHeart() {
   const heart = document.createElement('div');
   heart.className = 'heart';
-  
-  // حجم عشوائي
-  const size = 20 + Math.random() * 30;
+  const size = 20 + Math.random()*30;
   heart.style.width = size + 'px';
   heart.style.height = size + 'px';
-  
-  // لون عشوائي
   const colors = ['#ff5fa2','#ff1e56','#ffb6c1','#fff0f5'];
   const color = colors[Math.floor(Math.random()*colors.length)];
   heart.style.background = color;
-  heart.style.boxShadow = `0 0 10px ${color}, 0 0 20px ${color}, 0 0 30px ${color}`;
-  heart.style.borderRadius = '50% 50% 0 0'; // تأكيد شكل قلب
-  
-  // موقع عشوائي
+  heart.style.boxShadow = `0 0 10px ${color},0 0 20px ${color},0 0 30px ${color}`;
   heart.style.left = Math.random() * 100 + 'vw';
-  
-  // مدة سقوط عشوائية
   heart.style.animationDuration = (4 + Math.random()*3) + 's';
-  
-  // بعض القلوب تنبض
-  if (Math.random() < 0.5) {
-    heart.style.animation = `fall linear ${(4 + Math.random()*3)}s, pulse 1s infinite`;
-  }
-  
+  if(Math.random()<0.5){heart.style.animation=`fall linear ${(4 + Math.random()*3)}s, pulse 1s infinite`;}
   document.body.appendChild(heart);
   setTimeout(()=>heart.remove(),7000);
 }
 
+// تكرار إنشاء القلوب والنصوص
 setInterval(createHeart, 300);
+setInterval(createFloatingMessage, 700);
 </script>
 </body>
 </html>
