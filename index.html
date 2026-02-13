@@ -1,28 +1,40 @@
 <!doctype html>
 <html lang="ar" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>رسالة عشوائية</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>🤍🥹متزعلش ي صغنن و تذكر إن</title>
   <style>
-    body { font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial; background:#0b1220; color:#e9eefc; margin:0; }
-    .wrap { min-height:100vh; display:flex; align-items:center; justify-content:center; padding:24px; }
-    .card { width:min(720px, 100%); background:#121b31; border:1px solid #223055; border-radius:16px; padding:22px; }
-    .tag { display:inline-block; font-size:12px; opacity:.8; margin-bottom:12px; }
-    .msg { font-size:22px; line-height:1.7; white-space:pre-wrap; }
-    .meta { margin-top:16px; font-size:12px; opacity:.7; display:flex; gap:12px; flex-wrap:wrap; }
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Tahoma, Arial;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4);
+      color: #fff;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .card {
+      background: rgba(0,0,0,0.3);
+      padding: 40px;
+      border-radius: 20px;
+      max-width: 600px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    }
+    .msg {
+      font-size: 24px;
+      line-height: 1.7;
+      white-space: pre-wrap;
+      font-weight: bold;
+      text-shadow: 1px 1px 5px rgba(0,0,0,0.4);
+    }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <div class="card">
-      <div class="tag">🥹متتدايقش ي صغنن و تذكر إن</div>
-      <div id="message" class="msg"></div>
-      <div class="meta">
-        <span id="count"></span>
-        <span id="seed"></span>
-      </div>
-    </div>
+  <div class="card">
+    <div id="message" class="msg"></div>
   </div>
 
   <script>
@@ -41,7 +53,7 @@
       "أنا بس عايزة أشوفك مرتاح وسعيد🥰." ,    
       "لو محتاج حد يسمعك، أنا هنا🥹💖." ,    
       "كل همك هيتلاشى وأنا جمبك🫀🥺." ,    
-      "إمسك إيديا، وإحنㅔا مع بعض🥹🥰." ,    
+      "إمسك إيديا، وإحنا مع بعض🥹🥰." ,    
       "كل دمعة هتمسحها قلبي💗." ,    
       "مش لازم تحل كل حاجة لوحدك، أنا معاك💕😽." ,    
       "انت قوي وأنا واثقة فيك💞😁." ,    
@@ -62,7 +74,7 @@
       "ضحكتك أنور يومي💛." ,   
       "مش محتاجة حاجة منك غير إنك تكون بخير🩵." ,    
       "أنا معاك مهما حصل." ,    
-      "حتى لو كل حاجة وقفت، أنا جمبك🤍🫂." ,    
+      "حتى لو كل حاجة وقفت، أنا جمبك." ,    
       "أنا واثقة إنك هتعدي كل حاجة." ,   
       "شوية هدوء وهيبقى كل شيء تمام." ,    
       "قلبي بيطمن بس لما أشوفك مرتاح." ,    
@@ -77,18 +89,13 @@
       "مش مهم المسافة، قلبي جمبك دايمًا." ,    
       "شوية هدوء ونكمل مع بعض." ,   
       "قلبي ملكك، وأنا هنا ليك." ,    
-      
     ];
 
     function pickRandom(arr) {
       return arr[Math.floor(Math.random() * arr.length)];
     }
 
-    // عرض رسالة عشوائية فور تحميل الصفحة
-    const msg = pickRandom(messages);
-    document.getElementById("message").textContent = msg;
-    document.getElementById("count").textContent = `عدد الرسائل: ${messages.length}`;
-    document.getElementById("seed").textContent = `وقت العرض: ${new Date().toLocaleString("ar-BH")}`;
+    document.getElementById("message").textContent = pickRandom(messages);
   </script>
 </body>
 </html>
